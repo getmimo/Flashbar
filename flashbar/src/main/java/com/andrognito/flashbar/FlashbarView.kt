@@ -89,9 +89,15 @@ internal class FlashbarView(context: Context) : LinearLayout(context) {
     }
 
     internal fun adjustWitPositionAndOrientation(activity: Activity,
-                                                 gravity: Gravity) {
+                                                 gravity: Gravity,
+                                                 adjustToStatusBar: Boolean) {
         val flashbarViewLp = RelativeLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
-        val statusBarHeight = activity.getStatusBarHeightInPx()
+
+        val statusBarHeight = if (adjustToStatusBar) {
+            activity.getStatusBarHeightInPx()
+        } else {
+            0
+        }
 
         val flashbarViewContentLp = fbContent.layoutParams as LinearLayout.LayoutParams
 
