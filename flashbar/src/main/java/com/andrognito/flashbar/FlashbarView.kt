@@ -69,7 +69,8 @@ internal class FlashbarView(context: Context) : LinearLayout(context) {
     internal fun init(
             gravity: Gravity,
             castShadow: Boolean,
-            shadowStrength: Int) {
+            shadowStrength: Int,
+            layoutId: Int) {
         this.gravity = gravity
         this.orientation = VERTICAL
 
@@ -79,7 +80,7 @@ internal class FlashbarView(context: Context) : LinearLayout(context) {
             castShadow(ShadowView.ShadowType.TOP, shadowStrength)
         }
 
-        inflate(context, R.layout.flash_bar_view, this)
+        inflate(context, layoutId, this)
 
         // If the bar appears with the top, then the shadow needs to added to the bottom of it,
         // Thus, after the inflation of the bar

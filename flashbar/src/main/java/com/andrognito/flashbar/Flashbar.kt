@@ -56,7 +56,7 @@ class Flashbar private constructor(private var builder: Builder) {
         flashbarContainerView.addParent(this)
 
         flashbarView = FlashbarView(builder.activity)
-        flashbarView.init(builder.gravity, builder.castShadow, builder.shadowStrength!!)
+        flashbarView.init(builder.gravity, builder.castShadow, builder.shadowStrength, builder.layoutId)
         flashbarView.adjustWitPositionAndOrientation(builder.activity, builder.gravity)
         flashbarView.addParent(flashbarContainerView)
 
@@ -148,6 +148,8 @@ class Flashbar private constructor(private var builder: Builder) {
     }
 
     class Builder(internal var activity: Activity) {
+        internal var layoutId: Int = R.layout.flash_bar_view
+
         internal var gravity: Gravity = BOTTOM
         internal var backgroundColor: Int? = null
         internal var backgroundDrawable: Drawable? = null
@@ -222,6 +224,8 @@ class Flashbar private constructor(private var builder: Builder) {
 
         internal var enterAnimBuilder: FlashAnimBarBuilder? = null
         internal var exitAnimBuilder: FlashAnimBarBuilder? = null
+
+        fun layoutId(layoutId: Int) = apply { this.layoutId = layoutId }
 
         /**
          * Specifies the gravity from where the flashbar will be shown (top/bottom)
