@@ -221,6 +221,17 @@ class KotlinSampleActivity : AppCompatActivity() {
                 .build()
     }
 
+    private fun statusbarNotAdjusted(): Flashbar {
+        return Flashbar.Builder(this)
+                .gravity(Flashbar.Gravity.TOP)
+                .title("Hello World!")
+                .message("You can show a default icon on the left side of the with view.")
+                .backgroundColorRes(R.color.colorPrimaryDark)
+                .showIcon()
+                .adjustToStatusBar(false)
+                .build()
+    }
+
     private fun progressBasic(): Flashbar {
         return Flashbar.Builder(this)
                 .gravity(Flashbar.Gravity.TOP)
