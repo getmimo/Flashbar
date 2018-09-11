@@ -226,7 +226,11 @@ class Flashbar private constructor(private var builder: Builder) {
         internal var exitAnimBuilder: FlashAnimBarBuilder? = null
 
         internal var adjustToStatusbar: Boolean = true
-        
+
+
+        /**
+         * Specifies a custom layout for the flashbar.
+         */
         fun layoutId(layoutId: Int) = apply { this.layoutId = layoutId }
 
         /**
