@@ -21,7 +21,7 @@ class KotlinSampleActivity : AppCompatActivity() {
 
         show.setOnClickListener {
             if (flashbar == null) {
-                flashbar = basic()
+                flashbar = iconAdvanced()
             }
             flashbar?.show()
         }
@@ -219,6 +219,17 @@ class KotlinSampleActivity : AppCompatActivity() {
                 .showIcon()
                 .icon(R.drawable.ic_drop)
                 .iconColorFilterRes(R.color.colorAccent)
+                .build()
+    }
+
+    private fun statusbarNotAdjusted(): Flashbar {
+        return Flashbar.Builder(this)
+                .gravity(Flashbar.Gravity.TOP)
+                .title("Hello World!")
+                .message("You can show a default icon on the left side of the with view.")
+                .backgroundColorRes(R.color.colorPrimaryDark)
+                .showIcon()
+                .adjustToStatusBar(false)
                 .build()
     }
 

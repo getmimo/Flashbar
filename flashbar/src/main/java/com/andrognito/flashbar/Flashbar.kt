@@ -56,8 +56,8 @@ class Flashbar private constructor(private var builder: Builder) {
         flashbarContainerView.addParent(this)
 
         flashbarView = FlashbarView(builder.activity)
-        flashbarView.init(builder.gravity, builder.castShadow, builder.shadowStrength!!)
-        flashbarView.adjustWitPositionAndOrientation(builder.activity, builder.gravity)
+        flashbarView.init(builder.gravity, builder.castShadow, builder.shadowStrength)
+        flashbarView.adjustWitPositionAndOrientation(builder.activity, builder.gravity, builder.adjustToStatusbar)
         flashbarView.addParent(flashbarContainerView)
 
         flashbarContainerView.attach(flashbarView)
@@ -222,6 +222,8 @@ class Flashbar private constructor(private var builder: Builder) {
 
         internal var enterAnimBuilder: FlashAnimBarBuilder? = null
         internal var exitAnimBuilder: FlashAnimBarBuilder? = null
+
+        internal var adjustToStatusbar: Boolean = true
 
         /**
          * Specifies the gravity from where the flashbar will be shown (top/bottom)
@@ -726,6 +728,10 @@ class Flashbar private constructor(private var builder: Builder) {
          */
         fun progressTintRes(@ColorRes colorId: Int) = apply {
             this.progressTint = ContextCompat.getColor(activity, colorId)
+        }
+
+        fun adjustToStatusBar(adjust: Boolean) = apply {
+            this.adjustToStatusbar = adjust
         }
 
         /**
