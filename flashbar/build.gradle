@@ -15,7 +15,7 @@ ext {
     siteUrl = 'https://github.com/aritraroy/Flashbar'
     gitUrl = 'https://github.com/aritraroy/Flashbar.git'
 
-    libraryVersion = '1.0.2'
+    libraryVersion = '1.0.3-mimo'
 
     developerId = 'aritraroy'
     developerName = 'Aritra Roy'
@@ -32,8 +32,8 @@ android {
     defaultConfig {
         minSdkVersion versions.sdkMin
         targetSdkVersion versions.sdkTarget
-        versionCode 3
-        versionName "1.0.2"
+        versionCode 4
+        versionName "1.0.3-mimo"
 
         consumerProguardFiles 'proguard-rules.pro'
     }
