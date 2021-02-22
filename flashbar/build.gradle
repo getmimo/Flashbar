@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: "maven-publish"
 
 ext {
     bintrayRepo = 'maven'
@@ -15,7 +16,7 @@ ext {
     siteUrl = 'https://github.com/aritraroy/Flashbar'
     gitUrl = 'https://github.com/aritraroy/Flashbar.git'
 
-    libraryVersion = '1.0.2'
+    libraryVersion = '1.0.4-mimo'
 
     developerId = 'aritraroy'
     developerName = 'Aritra Roy'
@@ -46,3 +47,25 @@ dependencies {
 
 apply from: 'https://raw.githubusercontent.com/aritraroy/LibUtils/master/install.gradle'
 apply from: 'https://raw.githubusercontent.com/aritraroy/LibUtils/master/upload.gradle'
+
+publishing {
+    publications {
+        aar(MavenPublication) {
+            groupId "com.andrognito.flashbar"
+            artifactId 'flashbar'
+            version '1.0.4-mimo'
+            artifact("$buildDir/outputs/aar/flashbar-release.aar")
+        }
+    }
+
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/getmimo/androidapp")
+            credentials {
+                username = System.getenv("GITHUB_USERNAME")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+}
