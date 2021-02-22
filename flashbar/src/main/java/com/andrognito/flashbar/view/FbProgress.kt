@@ -184,7 +184,7 @@ class FbProgress : View {
         }
     }
 
-    public override fun onSaveInstanceState(): Parcelable? {
+    public override fun onSaveInstanceState(): Parcelable {
         val superState = super.onSaveInstanceState()
 
         val ss = WheelSavedState(superState)
@@ -373,10 +373,9 @@ class FbProgress : View {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private fun setAnimationEnabled() {
-        val currentApiVersion = android.os.Build.VERSION.SDK_INT
+        val currentApiVersion = Build.VERSION.SDK_INT
 
-        val animationValue: Float
-        animationValue = if (currentApiVersion >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+        val animationValue: Float = if (currentApiVersion >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             Settings.Global.getFloat(context.contentResolver,
                     Settings.Global.ANIMATOR_DURATION_SCALE, 1f)
         } else {
@@ -513,7 +512,7 @@ class FbProgress : View {
         var linearProgress: Boolean = false
         var fillRadius: Boolean = false
 
-        constructor(superState: Parcelable) : super(superState) {}
+        constructor(superState: Parcelable?) : super(superState)
 
         private constructor(`in`: Parcel) : super(`in`) {
             this.mProgress = `in`.readFloat()
