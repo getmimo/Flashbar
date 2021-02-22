@@ -5,11 +5,12 @@ import android.graphics.Bitmap
 import android.graphics.PorterDuff
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
-import android.support.annotation.*
-import android.support.v4.content.ContextCompat
 import android.text.Spanned
+import android.view.Window
 import android.widget.ImageView.ScaleType
 import android.widget.ImageView.ScaleType.CENTER_CROP
+import androidx.annotation.*
+import androidx.core.content.ContextCompat
 import com.andrognito.flashbar.Flashbar.Gravity.BOTTOM
 import com.andrognito.flashbar.Flashbar.Gravity.TOP
 import com.andrognito.flashbar.anim.FlashAnim
@@ -28,7 +29,7 @@ class Flashbar private constructor(private var builder: Builder) {
      * Shows a flashbar
      */
     fun show() {
-        flashbarContainerView.show(builder.activity)
+        flashbarContainerView.show(builder.activity, builder.window)
     }
 
     /**
@@ -147,7 +148,11 @@ class Flashbar private constructor(private var builder: Builder) {
         }
     }
 
-    class Builder(internal var activity: Activity) {
+    class Builder @JvmOverloads constructor(
+            internal var activity: Activity,
+            internal val window: Window? = null
+    ) {
+
         internal var layoutId: Int = R.layout.flash_bar_view
 
         internal var gravity: Gravity = BOTTOM

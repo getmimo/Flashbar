@@ -9,7 +9,6 @@ import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Build.VERSION.SDK_INT
 import android.os.Build.VERSION_CODES.M
-import android.support.annotation.ColorInt
 import android.text.Spanned
 import android.text.TextUtils
 import android.util.TypedValue
@@ -21,6 +20,7 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.RelativeLayout.ALIGN_PARENT_BOTTOM
 import android.widget.RelativeLayout.ALIGN_PARENT_TOP
+import androidx.annotation.ColorInt
 import com.andrognito.flashbar.Flashbar.Gravity
 import com.andrognito.flashbar.Flashbar.Gravity.BOTTOM
 import com.andrognito.flashbar.Flashbar.Gravity.TOP
