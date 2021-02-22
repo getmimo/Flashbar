@@ -9,6 +9,8 @@ import android.view.MotionEvent.ACTION_DOWN
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
+import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+import android.view.Window
 import android.widget.RelativeLayout
 import com.andrognito.flashbar.Flashbar.Companion.DURATION_INDEFINITE
 import com.andrognito.flashbar.Flashbar.DismissEvent
@@ -132,15 +134,25 @@ internal class FlashbarContainerView(context: Context)
     }
 
 
-    internal fun show(activity: Activity) {
+    internal fun show(activity: Activity, window: Window?) {
         if (isBarShowing || isBarShown) return
 
-        val activityRootView = activity.getRootView() ?: return
-
         // Only add the withView to the parent once
-        if (this.parent == null) activityRootView.addView(this)
+        if (this.parent == null) {
+            // add to window if it was specified in the source builder
+            if (window != null) {
+                window.addContentView(this, ViewGroup.LayoutParams(
+                        MATCH_PARENT,
+                        WRAP_CONTENT
+                ))
+            } else {
+                val activityRootView = activity.getRootView() ?: return
 
-        activityRootView.afterMeasured {
+                activityRootView.addView(this)
+            }
+        }
+
+        afterMeasured {
             val enterAnim = enterAnimBuilder.withView(flashbarView).build()
             enterAnim.start(object : FlashAnim.InternalAnimListener {
                 override fun onStart() {
